@@ -8,17 +8,32 @@
  * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
  */
 
-namespace hipanel\modules\client\controllers;
+namespace hipanel\client\debt\controllers;
 
 use hipanel\actions\IndexAction;
 use hipanel\filters\EasyAccessControl;
-use hipanel\modules\client\models\Client;
+use hipanel\client\debt\models\ClientDebt;
 use Yii;
 use yii\base\Event;
-use yii\filters\VerbFilter;
 
 class DebtController extends \hipanel\base\CrudController
 {
+    public static function modelClassName()
+    {
+        return ClientDebt::class;
+    }
+
+    protected $_myViewPath;
+
+    public function getViewPath()
+    {
+        if ($this->_myViewPath === null) {
+            $this->_myViewPath = dirname(__DIR__) . '/views/' . $this->id;
+        }
+
+        return $this->_myViewPath;
+    }
+
     public function behaviors()
     {
         return array_merge(parent::behaviors(), [
@@ -39,29 +54,15 @@ class DebtController extends \hipanel\base\CrudController
                 'on beforePerform' => function (Event $event) {
                     $action = $event->sender;
                     $query = $action->getDataProvider()->query;
-                    $representation = $action->controller->indexPageUiOptionsModel->representation;
 
-                    if (in_array($representation, ['servers', 'payment'], true)) {
-                        $query->addSelect(['purses'])->withPurses();
-                    }
-
-                    switch ($representation) {
-                        case 'payment':
-                            $query->withPaymentTicket()->addSelect(['full_balance', 'debts_period']);
-                            break;
-                        case 'servers':
-                            $query->addSelect(['accounts_count', Yii::getAlias('@server', false) ? 'servers_count' : null]);
-                            break;
-                        case 'documents':
-                            $query->addSelect(['documents']);
-                            break;
-                    }
+                    $query->addSelect(['purses'])->withPurses();
+                    $query->withPaymentTicket()->addSelect(['full_balance', 'debts_period']);
                 },
                 'data' => function ($action) {
                     return [
                         'types' => $this->getRefs('type,client', 'hipanel:client'),
                         'states' => $this->getRefs('state,client', 'hipanel:client'),
-                        'sold_services' => Client::getSoldServices(),
+                        'sold_services' => ClientDebt::getSoldServices(),
                     ];
                 },
                 'filterStorageMap' => [
