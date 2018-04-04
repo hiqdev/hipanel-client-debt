@@ -15,7 +15,7 @@ class SidebarSubMenu extends \hiqdev\yii2\menus\Menu
             'clients' => [
                 'items' => [
                     'debtors' => [
-                        'label' => Yii::t('hipanel:document', 'Debtors'),
+                        'label' => Yii::t('hipanel.debt', 'Debtors'),
                         'url' => ['/client/debt/index'],
                         'visible' => Yii::$app->user->can('manage'),
                     ],

@@ -8,6 +8,16 @@ return [
             ],
         ],
     ],
+    'components' => [
+        'i18n' => [
+            'translations' => [
+                'hipanel.debt' => [
+                    'class' => \yii\i18n\PhpMessageSource::class,
+                    'basePath' => '@hipanel/client/debt/messages',
+                ],
+            ],
+        ],
+    ],
     'container' => [
         'definitions' => [
             \hiqdev\thememanager\menus\AbstractSidebarMenu::class => [

@@ -41,12 +41,12 @@ class ClientDebt extends \hipanel\modules\client\models\Client
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
-            'debt_depth' => Yii::t('hipanel:client', 'Debt depth'),
-            'debt_lt' => Yii::t('hipanel:client', 'Debt to'),
-            'debt_gt' => Yii::t('hipanel:client', 'Debt from'),
-            'debt_depth_lt' => Yii::t('hipanel:client', 'Debt depth to'),
-            'debt_depth_gt' => Yii::t('hipanel:client', 'Debt depth from'),
-            'sold_services' => Yii::t('hipanel:client', 'Sold services'),
+            'debt_depth'        => Yii::t('hipanel.debt', 'Debt depth'),
+            'debt_lt'           => Yii::t('hipanel.debt', 'Debt to'),
+            'debt_gt'           => Yii::t('hipanel.debt', 'Debt from'),
+            'debt_depth_lt'     => Yii::t('hipanel.debt', 'Debt depth to'),
+            'debt_depth_gt'     => Yii::t('hipanel.debt', 'Debt depth from'),
+            'sold_services'     => Yii::t('hipanel.debt', 'Sold services'),
         ]);
     }
 

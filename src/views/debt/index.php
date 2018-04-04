@@ -12,7 +12,7 @@ use yii\helpers\Html;
 
 FlagIconCssAsset::register($this);
 
-$this->title = Yii::t('hipanel', 'Debtors');
+$this->title = Yii::t('hipanel.debt', 'Debtors');
 $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('hipanel', 'filtered list') : Yii::t('hipanel', 'full list');
 $this->params['breadcrumbs'][] = $this->title;
 
