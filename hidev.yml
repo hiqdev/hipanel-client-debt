@@ -1,0 +1,13 @@
+package:
+    type:           yii2-extension
+    name:           hipanel-client-debt
+    title:          Client Debt plugin for HiPanel
+    headline:       HiPanel Client Debt
+    keywords:       client, debt, hipanel, plugin
+    description:    |
+        [![Logo](https://raw.githubusercontent.com/hiqdev/hipanel-core/master/docs/logo.png)](https://hipanel.com/)
+
+        [HiPanel](http://hipanel.com) is next generation billing and control panel for hosting, domains and more.
+
+        This package provides client debt management for HiPanel.
+
