@@ -57,11 +57,7 @@ class DebtController extends \hipanel\base\CrudController
             'index' => [
                 'class' => IndexAction::class,
                 'on beforePerform' => function (Event $event) {
-                    $action = $event->sender;
-                    $query = $action->getDataProvider()->query;
-
-                    $query->addSelect(['purses'])->withPurses();
-                    $query->withPaymentTicket()->addSelect(['full_balance', 'debt_depth']);
+                    $event->sender->getDataProvider()->query->withPaymentTicket();
                 },
                 'data' => function ($action) {
                     return [
