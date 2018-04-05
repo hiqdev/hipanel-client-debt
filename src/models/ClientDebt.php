@@ -32,7 +32,7 @@ class ClientDebt extends Client
 
     public static function tableName()
     {
-        return 'client';
+        return 'clientdebt';
     }
 
      public function attributes()

@@ -50,9 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'seller',
                 'type',
                 'balance',
-                'credit',
-                'tariff',
-                'create_time',
+                'debt_depth',
             ],
         ]) ?>
     <?php $page->endContent() ?>
@@ -140,7 +138,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'filterModel'  => $model,
                 'columns' => [
-                    'checkbox', 'id', 'note',
+                    'checkbox', 'login_without_note', 'note', 'seller',
                     'sold_services',
                     'balance',
                     'last_deposit',

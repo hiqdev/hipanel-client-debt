@@ -11,24 +11,9 @@
 namespace hipanel\client\debt\grid;
 
 use hipanel\modules\client\grid\ClientGridView;
-use hipanel\grid\BoxedGridView;
-use hipanel\grid\MainColumn;
-use hipanel\grid\RefColumn;
-use hipanel\grid\XEditableColumn;
 use hipanel\helpers\Url;
-use hipanel\modules\client\menus\ClientActionsMenu;
-use hipanel\modules\client\models\Client;
-use hipanel\modules\client\widgets\ClientState;
-use hipanel\modules\client\widgets\ClientType;
-use hipanel\modules\finance\controllers\BillController;
-use hipanel\modules\finance\grid\BalanceColumn;
-use hipanel\modules\finance\grid\CreditColumn;
-use hipanel\modules\finance\widgets\ColoredBalance;
-use hipanel\widgets\ArraySpoiler;
-use hipanel\widgets\DatePicker;
-use hiqdev\yii2\menus\grid\MenuColumn;
-use Yii;
 use yii\helpers\Html;
+use Yii;
 
 class ClientDebtGridView extends ClientGridView
 {
@@ -85,7 +70,6 @@ class ClientDebtGridView extends ClientGridView
                 'label' => Yii::t('hipanel.debt', 'Sold services'),
                 'value' => function($model) {
                     foreach (json_decode($model->sold_services, true) as $sold_service => $value) {
-
                         $sold_services[] = Html::tag('span', strtoupper(substr($sold_service, 0, 1)), ['class' => $value ? 'text-green text-bold' : 'text-red']);
                     }
                     return implode(' / ', $sold_services);
