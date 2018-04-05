@@ -15,7 +15,6 @@ use hipanel\filters\EasyAccessControl;
 use hipanel\client\debt\models\ClientDebt;
 use hipanel\actions\SmartPerformAction;
 use yii\base\Event;
-
 use Yii;
 
 class DebtController extends \hipanel\base\CrudController
