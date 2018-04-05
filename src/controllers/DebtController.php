@@ -27,7 +27,6 @@ class DebtController extends \hipanel\base\CrudController
         $this->_myViewPath = dirname(__DIR__) . '/views/' . $this->id;
     }
 
-
     public static function modelClassName()
     {
         return ClientDebt::class;
