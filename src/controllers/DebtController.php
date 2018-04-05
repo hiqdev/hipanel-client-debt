@@ -1,9 +1,9 @@
 <?php
 /**
- * Client module for HiPanel
+ * ClientDebt module for HiPanel
  *
- * @link      https://github.com/hiqdev/hipanel-module-client
- * @package   hipanel-module-client
+ * @link      https://github.com/hiqdev/hipanel-client-debt
+ * @package   hipanel-client-debt
  * @license   BSD-3-Clause
  * @copyright Copyright (c) 2015-2017, HiQDev (http://hiqdev.com/)
  */
@@ -56,7 +56,7 @@ class DebtController extends \hipanel\base\CrudController
                     $query = $action->getDataProvider()->query;
 
                     $query->addSelect(['purses'])->withPurses();
-                    $query->withPaymentTicket()->addSelect(['full_balance', 'debts_period']);
+                    $query->withPaymentTicket()->addSelect(['full_balance', 'debt_depth']);
                 },
                 'data' => function ($action) {
                     return [

@@ -1,7 +1,17 @@
 <?php
 
+/*
+ * Debt Plugin for HiPanel
+ *
+ * @link      https://github.com/hiqdev/hipanel-client-debt
+ * @package   hipanel-client-debt
+ * @license   BSD-3-Clause
+ * @copyright Copyright (c) 2014-2015, HiQDev (https://hiqdev.com/)
+ */
+
+
 use hipanel\modules\client\grid\ClientGridLegend;
-use hipanel\modules\client\grid\ClientGridView;
+use hipanel\client\debt\grid\ClientDebtGridView;
 use hipanel\widgets\AjaxModal;
 use hipanel\widgets\gridLegend\GridLegend;
 use hipanel\widgets\IndexPage;
@@ -9,6 +19,7 @@ use hipanel\widgets\Pjax;
 use yii\bootstrap\Dropdown;
 use hiqdev\assets\flagiconcss\FlagIconCssAsset;
 use yii\helpers\Html;
+use hipanel\helpers\Url;
 
 FlagIconCssAsset::register($this);
 
@@ -66,7 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
             $ajaxModals = [
                 [
                     'id' => 'bulk-enable-block-modal',
-                    'scenario' => 'bulk-enable-block-modal',
+                    'scenario' => Url::to('@client/bulk-enable-block-modal'),
                     'bulkPage' => true,
                     'header' => Html::tag('h4', Yii::t('hipanel:client', 'Block clients'), ['class' => 'modal-title']),
                     'headerOptions' => ['class' => 'label-warning'],
@@ -75,7 +86,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ],
                 [
                     'id' => 'bulk-disable-block-modal',
-                    'scenario' => 'bulk-disable-block-modal',
+                    'scenario' => Url::to('@client/bulk-disable-block-modal'),
                     'bulkPage' => true,
                     'header' => Html::tag('h4', Yii::t('hipanel:client', 'Unblock clients'), ['class' => 'modal-title']),
                     'headerOptions' => ['class' => 'label-warning'],
@@ -91,16 +102,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]);
                 array_push($ajaxModals, [
                     'id' => 'bulk-delete-modal',
-                    'scenario' => 'bulk-delete-modal',
+                    'scenario' => Url::to('@client/bulk-delete-modal'),
                     'bulkPage' => true,
                     'header' => Html::tag('h4', Yii::t('hipanel', 'Delete'), ['class' => 'modal-title label-danger']),
                     'headerOptions' => ['class' => 'label-danger'],
                     'handleSubmit' => false,
                     'toggleButton' => false,
                 ]);
-            }
-            if (Yii::$app->user->can('manage')) {
-                echo $page->renderBulkButton(Yii::t('hipanel', 'Edit'), 'update');
             }
             ?>
             <div class="dropdown" style="display: inline-block">
@@ -124,7 +132,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php $page->beginContent('table') ?>
         <?php $page->beginBulkForm() ?>
-            <?= ClientGridView::widget([
+            <?= ClientDebtGridView::widget([
                 'boxed' => false,
                 'rowOptions' => function ($model) {
                     return  GridLegend::create(new ClientGridLegend($model))->gridRowOptions();
@@ -132,7 +140,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'filterModel'  => $model,
                 'columns' => [
-                    'checkbox', 'login_without_note', 'note',
+                    'checkbox', 'id', 'note',
                     'sold_services',
                     'balance',
                     'last_deposit',
