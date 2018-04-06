@@ -13,24 +13,27 @@ namespace hipanel\client\debt\controllers;
 use hipanel\actions\IndexAction;
 use hipanel\filters\EasyAccessControl;
 use hipanel\client\debt\models\ClientDebt;
-use Yii;
+use hipanel\actions\SmartPerformAction;
 use yii\base\Event;
+use Yii;
 
 class DebtController extends \hipanel\base\CrudController
 {
+    protected $_myViewPath;
+
+    public function init()
+    {
+        parent::init();
+        $this->_myViewPath = dirname(__DIR__) . '/views/' . $this->id;
+    }
+
     public static function modelClassName()
     {
         return ClientDebt::class;
     }
 
-    protected $_myViewPath;
-
     public function getViewPath()
     {
-        if ($this->_myViewPath === null) {
-            $this->_myViewPath = dirname(__DIR__) . '/views/' . $this->id;
-        }
-
         return $this->_myViewPath;
     }
 
@@ -52,11 +55,7 @@ class DebtController extends \hipanel\base\CrudController
             'index' => [
                 'class' => IndexAction::class,
                 'on beforePerform' => function (Event $event) {
-                    $action = $event->sender;
-                    $query = $action->getDataProvider()->query;
-
-                    $query->addSelect(['purses'])->withPurses();
-                    $query->withPaymentTicket()->addSelect(['full_balance', 'debt_depth']);
+                    $event->sender->getDataProvider()->query->withPaymentTicket();
                 },
                 'data' => function ($action) {
                     return [
@@ -73,6 +72,10 @@ class DebtController extends \hipanel\base\CrudController
                     'seller_id' => 'client.client.seller_id',
                     'name_ilike' => 'client.client.name_ilike',
                 ],
+            ],
+            'create-payment-ticket' => [
+                'class' => SmartPerformAction::class,
+                'success' => Yii::t('hipanel:client', 'Notification was created'),
             ],
         ]);
     }

@@ -32,7 +32,7 @@ class ClientDebt extends Client
 
     public static function tableName()
     {
-        return 'client';
+        return 'clientdebt';
     }
 
      public function attributes()
@@ -56,7 +56,7 @@ class ClientDebt extends Client
     {
         return ArrayHelper::merge(Client::rules(), [
             [['full_balance', 'debt_gt', 'debt_lt', 'debt_depth_gt', 'debt_depth_lt', 'debt', 'payment_ticket_id'], 'number'],
-            [['financial_month', 'debt_depth', 'sold_services', 'payment_ticket'], 'safe'],
+            [['financial_month', 'debt_depth', 'sold_services'], 'safe'],
             [['last_deposit_time'], 'date'],
             [['hide_vip'], 'boolean'],
         ]);
