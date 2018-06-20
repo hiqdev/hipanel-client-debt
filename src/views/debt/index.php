@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php $page->beginContent('bulk-actions') ?>
         <?php if (Yii::$app->user->can('support')) : ?>
-            <?= $page->renderBulkButton(Yii::t('hipanel:client', 'Payment notification'), 'create-payment-ticket', 'danger')?>
+            <?= $page->renderBulkButton('create-payment-ticket', Yii::t('hipanel:client', 'Payment notification'), ['color' => 'danger'])?>
 
             <?php
             $dropDownItems = [
