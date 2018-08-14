@@ -57,8 +57,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php $page->beginContent('bulk-actions') ?>
         <?php if (Yii::$app->user->can('support')) : ?>
-            <?= $page->renderBulkButton('create-payment-ticket', Yii::t('hipanel:client', 'Payment notification'), ['color' => 'danger'])?>
-
             <?php
             $dropDownItems = [
                 [
@@ -71,6 +69,11 @@ $this->params['breadcrumbs'][] = $this->title;
                     'url' => '#bulk-disable-block-modal',
                     'linkOptions' => ['data-toggle' => 'modal'],
                 ],
+                [
+                    'label' => '<i class="fa fa-envelope"></i> ' . Yii::t('hipanel.debt', 'Payment notification'),
+                    'url' => '#bulk-create-ticket-notification-modal',
+                    'linkOptions' => ['data-toggle' => 'modal'],
+                ]
             ];
             $ajaxModals = [
                 [
@@ -87,6 +90,15 @@ $this->params['breadcrumbs'][] = $this->title;
                     'scenario' => Url::to('@client/bulk-disable-block-modal'),
                     'bulkPage' => true,
                     'header' => Html::tag('h4', Yii::t('hipanel:client', 'Unblock clients'), ['class' => 'modal-title']),
+                    'headerOptions' => ['class' => 'label-warning'],
+                    'handleSubmit' => false,
+                    'toggleButton' => false,
+                ],
+                [
+                    'id' => 'bulk-create-ticket-notification-modal',
+                    'scenario' => Url::to('@debt/bulk-create-ticket-notification-modal'),
+                    'bulkPage' => true,
+                    'header' => Html::tag('h4', Yii::t('hipanel.debt', 'Payment notification'), ['class' => 'modal-title']),
                     'headerOptions' => ['class' => 'label-warning'],
                     'handleSubmit' => false,
                     'toggleButton' => false,

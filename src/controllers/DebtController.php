@@ -14,7 +14,10 @@ use hipanel\actions\IndexAction;
 use hipanel\filters\EasyAccessControl;
 use hipanel\client\debt\models\ClientDebt;
 use hipanel\actions\SmartPerformAction;
+use hipanel\actions\PrepareBulkAction;
+use hipanel\modules\ticket\models\Template;
 use yii\base\Event;
+use yii\helpers\ArrayHelper;
 use Yii;
 
 class DebtController extends \hipanel\base\CrudController
@@ -76,6 +79,28 @@ class DebtController extends \hipanel\base\CrudController
             'create-payment-ticket' => [
                 'class' => SmartPerformAction::class,
                 'success' => Yii::t('hipanel:client', 'Notification was created'),
+                'on beforeSave' => function(Event $event) {
+                    /** @var \hipanel\actions\Action $action */
+                    $action = $event->sender;
+                    $template_id = Yii::$app->request->post('template_id');
+                    if (!empty($template_id)) {
+                        foreach ($action->collection->models as $model) {
+                            $model->setAttributes(array_filter([
+                                'template_id' => $template_id,
+                            ]));
+                        }
+                    }
+                },
+            ],
+            'bulk-create-ticket-notification-modal' => [
+                'class' => PrepareBulkAction::class,
+                'view' => '_bulkNotificationTickets',
+                'data' => function($action, $data) {
+                    $templates = ArrayHelper::map(Template::find()->all(), 'id', 'name');
+                    return array_merge($data, [
+                        'templates' => $templates,
+                    ]);
+                },
             ],
         ]);
     }

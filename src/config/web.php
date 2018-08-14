@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'aliases' => [
+        '@debt' => '/client/debt',
+    ],
     'modules' => [
         'client' => [
             'controllerMap' => [
