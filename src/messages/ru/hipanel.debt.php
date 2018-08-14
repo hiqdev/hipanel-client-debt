@@ -11,6 +11,7 @@
 return [
     'Debtor' => 'Должник',
     'Debtors' => 'Должники',
+    'Payment notification' => 'Напомнить о оплате',
 
     'Balances' => 'Балансы',
     'Sold services' => 'Проданные услуги',
