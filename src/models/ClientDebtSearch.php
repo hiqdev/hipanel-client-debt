@@ -24,7 +24,7 @@ class ClientDebtSearch extends ClientDebt
     {
         return ArrayHelper::merge($this->defaultSearchAttributes(), [
             'created_from', 'created_till',
-            'types', 'states', 'debt_gt', 'debt_lt', 'debt_depth_gt', 'debt_depth_lt', 'debt'
+            'types', 'states', 'debt_gt', 'debt_lt', 'debt_depth_gt', 'debt_depth_lt', 'debt', 'login_email_like',
         ]);
     }
 
