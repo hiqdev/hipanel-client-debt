@@ -58,7 +58,7 @@ class ClientDebt extends Client
             [['full_balance', 'debt_gt', 'debt_lt', 'debt_depth_gt', 'debt_depth_lt', 'debt', 'payment_ticket_id', 'template_id'], 'number'],
             [['financial_month', 'debt_depth', 'sold_services'], 'safe'],
             [['last_deposit_time'], 'date'],
-            [['hide_vip'], 'boolean'],
+            [['hide_vip', 'hide_prj'], 'boolean'],
         ]);
     }
 
@@ -72,6 +72,7 @@ class ClientDebt extends Client
             'debt_depth_gt'     => Yii::t('hipanel.debt', 'Debt depth from'),
             'sold_services'     => Yii::t('hipanel.debt', 'Sold services'),
             'hide_vip'          => Yii::t('hipanel.debt', 'Hide VIP'),
+            'hide_prj'          => Yii::t('hipanel.debt', 'Hide PRJ'),
             'template_id'       => Yii::t('hipanel.debt', 'Template'),
         ]);
     }
