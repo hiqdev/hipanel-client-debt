@@ -169,7 +169,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'payment_ticket',
                     'lang',
                 ],
-                'summaryRenderer' => function ($grid, $defaultSummaryCb) use ($local_sums, $total_sums) {
+                'summaryRenderer' => function (ClientDebtGridView $grid, \Closure $defaultSummaryCb) use ($local_sums, $total_sums): string {
                     return $defaultSummaryCb() . SummaryWidget::widget([
                         'local_sums' => $local_sums,
                         'total_sums' => $total_sums,
