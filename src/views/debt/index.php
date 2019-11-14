@@ -16,10 +16,21 @@ use hipanel\widgets\AjaxModal;
 use hipanel\widgets\gridLegend\GridLegend;
 use hipanel\widgets\IndexPage;
 use hipanel\widgets\Pjax;
+use hipanel\widgets\SummaryWidget;
 use yii\bootstrap\Dropdown;
 use hiqdev\assets\flagiconcss\FlagIconCssAsset;
 use yii\helpers\Html;
 use hipanel\helpers\Url;
+
+/**
+ * @var \yii\data\ActiveDataProvider $dataProvider
+ * @var \hipanel\models\IndexPageUiOptions $uiModel
+ * @var \hiqdev\higrid\representations\RepresentationCollection $representationCollection
+ * @var float[] $local_sums
+ * @var float[] $total_sums
+ * @var \hipanel\client\debt\models\ClientDebtSearch $model
+ * @var \yii\web\View $this
+ */
 
 FlagIconCssAsset::register($this);
 
@@ -158,6 +169,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     'payment_ticket',
                     'lang',
                 ],
+                'summaryRenderer' => function (ClientDebtGridView $grid, \Closure $defaultSummaryCb) use ($local_sums, $total_sums): string {
+                    return $defaultSummaryCb() . SummaryWidget::widget([
+                        'local_sums' => $local_sums,
+                        'total_sums' => $total_sums,
+                    ]);
+                },
             ]) ?>
         <?php $page->endBulkForm() ?>
     <?php $page->endContent() ?>

@@ -59,6 +59,7 @@ class ClientDebt extends Client
             [['financial_month', 'debt_depth', 'sold_services'], 'safe'],
             [['last_deposit_time'], 'date'],
             [['hide_vip', 'hide_prj'], 'boolean'],
+            [['positive_balance', 'negative_balance'], 'number'],
         ]);
     }
 

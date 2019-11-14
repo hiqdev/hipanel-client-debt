@@ -11,6 +11,7 @@
 namespace hipanel\client\debt\controllers;
 
 use hipanel\actions\IndexAction;
+use hipanel\actions\RenderAction;
 use hipanel\filters\EasyAccessControl;
 use hipanel\client\debt\models\ClientDebt;
 use hipanel\actions\SmartPerformAction;
@@ -60,8 +61,28 @@ class DebtController extends \hipanel\base\CrudController
                 'on beforePerform' => function (Event $event) {
                     $event->sender->getDataProvider()->query->withPaymentTicket();
                 },
-                'data' => function ($action) {
+                'data' => function (RenderAction $action, array $data): array {
+                    $query = clone $action->parent->dataProvider->query;
+                    $query->andWhere(['groupby' => 'total_balance']);
+                    $local_sums = [];
+                    foreach ($data['dataProvider']->getModels() as $model) {
+                        $balance = (float)$model->balance;
+                        $local_sums[$model->currency]['total'] += $model->balance;
+                        if ($balance < 0) {
+                            $local_sums[$model->currency]['negative'] -= $model->balance;
+                        } else {
+                            $local_sums[$model->currency]['positive'] += $model->balance;
+                        }
+                    }
+                    $total_sums = [];
+                    foreach ($query->all() as $model) {
+                        $total_sums[$model->currency]['total'] = (float)$model->balance;
+                        $total_sums[$model->currency]['negative'] = (float)$model->negative_balance;
+                        $total_sums[$model->currency]['positive'] = (float)$model->positive_balance;
+                    }
                     return [
+                        'local_sums' => $local_sums,
+                        'total_sums' => $total_sums,
                         'types' => $this->getRefs('type,client', 'hipanel:client'),
                         'states' => $this->getRefs('state,client', 'hipanel:client'),
                         'sold_services' => ClientDebt::getSoldServices(),
