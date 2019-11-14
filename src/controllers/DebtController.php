@@ -77,7 +77,7 @@ class DebtController extends \hipanel\base\CrudController
                     $total_sums = [];
                     foreach ($query->all() as $model) {
                         $total_sums[$model->currency]['total'] = (float)$model->balance;
-                        $total_sums[$model->currency]['negative'] = (float)$model->negative_balance;
+                        $total_sums[$model->currency]['negative'] = abs((float)$model->negative_balance);
                         $total_sums[$model->currency]['positive'] = (float)$model->positive_balance;
                     }
                     return [
