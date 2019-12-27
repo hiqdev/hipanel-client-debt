@@ -1,11 +1,13 @@
 <?php
 
-use hipanel\widgets\DatePicker;
+use hipanel\widgets\DateTimePicker;
 use hiqdev\combo\StaticCombo;
 use yii\helpers\Html;
 
 /**
- * @var \hipanel\widgets\AdvancedSearch $this
+ * @var \hipanel\widgets\AdvancedSearch $search
+ * @var array $sold_services
+ * @var \yii\web\View $this
  */
 ?>
 
@@ -14,12 +16,12 @@ use yii\helpers\Html;
 <div class="col-md-4 col-sm-6 col-xs-12">
     <div class="form-group">
         <?= Html::tag('label', Yii::t('hipanel:client', 'Financial month'), ['class' => 'control-label']); ?>
-        <?= DatePicker::widget([
+        <?= DateTimePicker::widget([
             'model'         => $search->model,
-            'type'          => DatePicker::TYPE_INPUT,
             'attribute'     => 'financial_month',
-            'pluginOptions' => [
+            'clientOptions' => [
                 'autoclose' => true,
+                'todayBtn' => true,
                 'startView' => 'year',
                 'minViewMode' => 'months',
                 'format'    => 'yyyy-mm-01',
