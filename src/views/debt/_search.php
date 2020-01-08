@@ -23,7 +23,7 @@ use yii\helpers\Html;
                 'autoclose' => true,
                 'todayBtn' => true,
                 'startView' => 'year',
-                'minViewMode' => 'months',
+                'minView' => 3,
                 'format'    => 'yyyy-mm-01',
             ],
         ]) ?>
