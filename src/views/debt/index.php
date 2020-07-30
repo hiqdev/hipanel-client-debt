@@ -66,6 +66,11 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     <?php $page->endContent() ?>
 
+    <?php $page->beginContent('representation-actions') ?>
+        <?= $page->renderRepresentations($representationCollection) ?>
+    <?php $page->endContent() ?>
+
+
     <?php $page->beginContent('bulk-actions') ?>
         <?php if (Yii::$app->user->can('support')) : ?>
             <?php
@@ -160,15 +165,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'dataProvider' => $dataProvider,
                 'filterModel'  => $model,
-                'columns' => [
-                    'checkbox', 'login_without_note', 'note', 'seller',
-                    'sold_services',
-                    'balance',
-                    'last_deposit',
-                    'debt_depth',
-                    'payment_ticket',
-                    'lang',
-                ],
+                'columns' => $representationCollection->getByName($uiModel->representation)->getColumns(),
                 'summaryRenderer' => function (ClientDebtGridView $grid, \Closure $defaultSummaryCb) use ($local_sums, $total_sums): string {
                     return $defaultSummaryCb() . SummaryWidget::widget([
                         'local_sums' => $local_sums,
