@@ -44,6 +44,39 @@ class ClientDebtGridView extends ClientGridView
                     return  Html::a($model->payment_ticket_id, Url::to(['@ticket/view', 'id' => $model->payment_ticket_id]), compact('class'));
                 },
             ],
+            'payment_status' => [
+                'label' => Yii::t('hipanel.debt', 'Payment status'),
+                'format' => 'raw',
+                'attribute' => 'payment_ticket',
+                'filter' => false,
+                'value' => function ($model) {
+                    if (!$model->payment_ticket_id) {
+                        return '';
+                    }
+
+                    if ($model->balance >= 0) {
+                        return Yii::t('hipanel.debt', 'Already payed');
+                    }
+
+                    return Yii::t('hipanel.debt', 'Debt');
+                }
+            ],
+            'ticket_status' => [
+                'label' => Yii::t('hipanel.debt', 'Ticket state'),
+                'format' => 'raw',
+                'attribute' => 'payment_ticket',
+                'filter' => false,
+                'value' => function ($model) {
+                    if (!$model->payment_ticket_id) {
+                        return '';
+                    }
+
+                    $state = $model->payment_ticket->state === 'opened' ? Yii::t('hipanel.debt', 'Opened') :  Yii::t('hipanel.debt', 'Closed');
+                    $status = $model->payment_ticket->status === 'wait_admin' ? Yii::t('hipanel.debt', 'Wait for staff') : Yii::t('hipanel.debt', 'Wait for client');
+
+                    return "{$state} / {$status}";
+                },
+            ],
             'last_deposit' => [
                 'label' => Yii::t('hipanel:client', 'Last deposit'),
                 'attribute' => 'last_deposit_time',
