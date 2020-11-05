@@ -11,7 +11,7 @@ use yii\helpers\Html;
  */
 ?>
 
-<? include Yii::getAlias('@hipanel/modules/client/views/client/_search.php') ?>
+<?php include Yii::getAlias('@hipanel/modules/client/views/client/_search.php') ?>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
     <div class="form-group">
