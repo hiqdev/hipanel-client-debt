@@ -11,7 +11,7 @@
 
 
 use hipanel\modules\client\grid\ClientGridLegend;
-use hipanel\client\debt\grid\ClientDebtGridView;
+use hipanel\client\debt\grid\DebtGridView;
 use hipanel\widgets\AjaxModal;
 use hipanel\widgets\gridLegend\GridLegend;
 use hipanel\widgets\IndexPage;
@@ -158,7 +158,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php $page->beginContent('table') ?>
         <?php $page->beginBulkForm() ?>
-            <?= ClientDebtGridView::widget([
+            <?= DebtGridView::widget([
                 'boxed' => false,
                 'rowOptions' => function ($model) {
                     return  GridLegend::create(new ClientGridLegend($model))->gridRowOptions();
@@ -166,7 +166,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'filterModel'  => $model,
                 'columns' => $representationCollection->getByName($uiModel->representation)->getColumns(),
-                'summaryRenderer' => function (ClientDebtGridView $grid, \Closure $defaultSummaryCb) use ($local_sums, $total_sums): string {
+                'summaryRenderer' => function (DebtGridView $grid, \Closure $defaultSummaryCb) use ($local_sums, $total_sums): string {
                     return $defaultSummaryCb() . SummaryWidget::widget([
                         'local_sums' => $local_sums,
                         'total_sums' => $total_sums,
