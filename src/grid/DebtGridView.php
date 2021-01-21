@@ -16,7 +16,7 @@ use hipanel\modules\client\models\Client;
 use yii\helpers\Html;
 use Yii;
 
-class ClientDebtGridView extends ClientGridView
+class DebtGridView extends ClientGridView
 {
     public function columns(): array
     {
