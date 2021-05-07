@@ -24,8 +24,8 @@ class DebtGridView extends ClientGridView
             'login_without_note' => [
                 'attribute' => 'login',
                 'filterAttribute' => 'login_ilike',
-                'format' => 'html',
-                'value' => fn(Client $client): string => Html::a($client->login, ['@client/view', 'id' => $client->id], ['class' => 'text-bold']),
+                'format' => 'raw',
+                'value' => fn(Client $client): string => Html::a(Html::encode($client->login), ['@client/view', 'id' => $client->id], ['class' => 'text-bold']),
             ],
             'payment_ticket' => [
                 'format' => 'html',
