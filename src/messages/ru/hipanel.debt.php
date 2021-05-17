@@ -26,4 +26,9 @@ return [
     'Dedicated' => 'Выделенные',
     'Virtual' => 'Виртуальные',
     'Hide VIP' => 'Скрыть VIP',
+    'Go to report' => 'Перейти к отчету',
+    'Debtor report' => 'Отчёт по дебиторской задолженности',
+    'Copy the token to generate a table in Google Sheets' => 'Скопируйте токен для того чтобы сгенерировать таблицу в Google Sheets',
+    'Copy' => 'Копировать',
+    'Token has been copied to the clipboard' => 'Токен скопирован',
 ];

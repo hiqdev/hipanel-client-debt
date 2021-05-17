@@ -10,6 +10,9 @@
  */
 
 
+use hipanel\client\debt\models\ClientDebtSearch;
+use hipanel\client\debt\widgets\LinkToDebtReport;
+use hipanel\models\IndexPageUiOptions;
 use hipanel\modules\client\grid\ClientGridLegend;
 use hipanel\client\debt\grid\DebtGridView;
 use hipanel\widgets\AjaxModal;
@@ -17,19 +20,22 @@ use hipanel\widgets\gridLegend\GridLegend;
 use hipanel\widgets\IndexPage;
 use hipanel\widgets\Pjax;
 use hipanel\widgets\SummaryWidget;
+use hiqdev\higrid\representations\RepresentationCollection;
 use yii\bootstrap\Dropdown;
 use hiqdev\assets\flagiconcss\FlagIconCssAsset;
+use yii\data\ActiveDataProvider;
 use yii\helpers\Html;
 use hipanel\helpers\Url;
+use yii\web\View;
 
 /**
- * @var \yii\data\ActiveDataProvider $dataProvider
- * @var \hipanel\models\IndexPageUiOptions $uiModel
- * @var \hiqdev\higrid\representations\RepresentationCollection $representationCollection
+ * @var ActiveDataProvider $dataProvider
+ * @var IndexPageUiOptions $uiModel
+ * @var RepresentationCollection $representationCollection
  * @var float[] $local_sums
  * @var float[] $total_sums
- * @var \hipanel\client\debt\models\ClientDebtSearch $model
- * @var \yii\web\View $this
+ * @var ClientDebtSearch $model
+ * @var View $this
  */
 
 FlagIconCssAsset::register($this);
@@ -47,6 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php $page->beginContent('main-actions') ?>
         <?= Html::a(Yii::t('hipanel:client', 'Create client'), ['@client/create'], ['class' => 'btn btn-sm btn-success']) ?>
+        <?= LinkToDebtReport::widget() ?>
     <?php $page->endContent() ?>
 
     <?php $page->beginContent('legend') ?>
@@ -166,7 +173,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'dataProvider' => $dataProvider,
                 'filterModel'  => $model,
                 'columns' => $representationCollection->getByName($uiModel->representation)->getColumns(),
-                'summaryRenderer' => function (DebtGridView $grid, \Closure $defaultSummaryCb) use ($local_sums, $total_sums): string {
+                'summaryRenderer' => static function (DebtGridView $grid, Closure $defaultSummaryCb) use ($local_sums, $total_sums): string {
                     return $defaultSummaryCb() . SummaryWidget::widget([
                         'local_sums' => $local_sums,
                         'total_sums' => $total_sums,
