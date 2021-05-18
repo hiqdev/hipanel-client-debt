@@ -25,7 +25,7 @@ class DebtGridView extends ClientGridView
                 'attribute' => 'login',
                 'filterAttribute' => 'login_ilike',
                 'format' => 'raw',
-                'value' => fn(Client $client): string => Html::a($client->login, ['@client/view', 'id' => $client->id], ['class' => 'text-bold']),
+                'value' => fn(Client $client): string => Html::a(Html::encode($client->login), ['@client/view', 'id' => $client->id], ['class' => 'text-bold']),
             ],
             'payment_ticket' => [
                 'format' => 'html',
@@ -53,7 +53,6 @@ class DebtGridView extends ClientGridView
             ],
             'payment_status' => [
                 'label' => Yii::t('hipanel.debt', 'Payment status'),
-                'format' => 'raw',
                 'attribute' => 'payment_ticket',
                 'filter' => false,
                 'value' => function ($model) {
@@ -70,7 +69,6 @@ class DebtGridView extends ClientGridView
             ],
             'ticket_status' => [
                 'label' => Yii::t('hipanel.debt', 'Ticket state'),
-                'format' => 'raw',
                 'attribute' => 'payment_ticket',
                 'filter' => false,
                 'value' => function ($model) {
