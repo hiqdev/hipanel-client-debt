@@ -47,7 +47,7 @@ class DebtController extends \hipanel\base\CrudController
             [
                 'class' => EasyAccessControl::class,
                 'actions' => [
-                    '*' => ['manage'],
+                    '*' => ['client.block'],
                 ],
             ],
         ]);

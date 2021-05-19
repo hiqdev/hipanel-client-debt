@@ -79,7 +79,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <?php $page->beginContent('bulk-actions') ?>
-        <?php if (Yii::$app->user->can('support')) : ?>
+        <?php if (Yii::$app->user->can('client.block')) : ?>
             <?php
             $dropDownItems = [
                 [
@@ -127,7 +127,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'toggleButton' => false,
                 ],
             ];
-            if (Yii::$app->user->can('manage')) {
+            if (Yii::$app->user->can('client.delete')) {
                 array_push($dropDownItems, [
                     'label' => '<i class="fa fa-trash"></i> ' . Yii::t('hipanel', 'Delete'),
                     'url' => '#bulk-delete-modal',
