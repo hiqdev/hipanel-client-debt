@@ -13,6 +13,7 @@ namespace hipanel\client\debt\grid;
 use hipanel\modules\client\grid\ClientGridView;
 use hipanel\helpers\Url;
 use hipanel\modules\client\models\Client;
+use hipanel\modules\finance\grid\BalanceColumn;
 use yii\helpers\Html;
 use Yii;
 
@@ -113,6 +114,10 @@ class DebtGridView extends ClientGridView
 
                     return implode(' / ', $sold_services);
                 },
+            ],
+            'balance' => [
+                'class' => BalanceColumn::class,
+                'valueFormatter' => fn($model, $value) => sprintf("%s %s", $model->currency, $value),
             ],
         ]);
     }
