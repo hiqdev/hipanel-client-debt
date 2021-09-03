@@ -49,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])) ?>
 <?php $page = IndexPage::begin(compact('model', 'dataProvider')) ?>
 
-    <?= $page->setSearchFormData(compact(['types', 'states', 'uiModel', 'sold_services'])) ?>
+    <?= $page->setSearchFormData(compact(['types', 'states', 'uiModel', 'sold_services', 'debt_label'])) ?>
 
     <?php $page->beginContent('main-actions') ?>
         <?= Html::a(Yii::t('hipanel:client', 'Create client'), ['@client/create'], ['class' => 'btn btn-sm btn-success']) ?>
@@ -67,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'name',
                 'seller',
                 'type',
-                'balance',
+                'total_balance',
                 'debt_depth',
             ],
         ]) ?>
@@ -163,6 +163,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php endif ?>
     <?php $page->endContent() ?>
 
+    <?php var_dump($representationCollection->getByName($uiModel->representation)) ?>
     <?php $page->beginContent('table') ?>
         <?php $page->beginBulkForm() ?>
             <?= DebtGridView::widget([

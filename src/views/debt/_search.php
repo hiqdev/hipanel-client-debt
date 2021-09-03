@@ -1,7 +1,9 @@
 <?php
 
+use hipanel\modules\finance\helpers\CurrencyFilter;
 use hipanel\widgets\DateTimePicker;
 use hiqdev\combo\StaticCombo;
+use hipanel\models\Ref;
 use yii\helpers\Html;
 
 /**
@@ -38,20 +40,64 @@ use yii\helpers\Html;
     ]) ?>
 </div>
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('debt_gt') ?>
+    <?= $search->field('debt_depth_gt')->input('number') ?>
 </div>
+
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('debt_lt') ?>
+    <?= $search->field('debt_depth_lt')->input('number') ?>
 </div>
+
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('debt_depth_gt') ?>
+    <?= $search->field('currency')->widget(StaticCombo::class, [
+        'data' => CurrencyFilter::addSymbolAndFilter($this->context->getCurrencyTypes()),
+        'hasId'     => true,
+    ]) ?>
 </div>
+
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('debt_depth_lt') ?>
+    <?= $search->field('debt_gt')->input('number', ['step' => 0.01]) ?>
 </div>
+
+<div class="col-md-4 col-sm-6 col-xs-12">
+    <?= $search->field('debt_lt')->input('number', ['step' => 0.01]) ?>
+</div>
+
+<div class="col-md-4 col-sm-6 col-xs-12">
+    <?= $search->field('total_debt_label')->widget(StaticCombo::class, [
+        'data' => $debt_label,
+    ]) ?>
+</div>
+
+<div class="col-md-4 col-sm-6 col-xs-12">
+    <?= $search->field('total_balance_gt')->input('number', ['step' => 0.01]) ?>
+</div>
+
+<div class="col-md-4 col-sm-6 col-xs-12">
+    <?= $search->field('total_balance_lt')->input('number', ['step' => 0.01]) ?>
+</div>
+
+<div class="col-md-4 col-sm-6 col-xs-12">
+    <?= $search->field('debt_label')->widget(StaticCombo::class, [
+        'data' => $debt_label,
+    ]) ?>
+</div>
+
+<div class="col-md-4 col-sm-6 col-xs-12">
+    <?= $search->field('balance_gt')->input('number', ['step' => 0.01]) ?>
+</div>
+
+<div class="col-md-4 col-sm-6 col-xs-12">
+    <?= $search->field('balance_lt')->input('number', ['step' => 0.01]) ?>
+</div>
+
+<div class="col-md-4 col-sm-6 col-xs-12">
+    <?= $search->field('inactive_period_gt')->input('number') ?>
+</div>
+
 <div class="col-md-4 col-sm-6 col-xs-12">
     <?= $search->field('hide_vip')->checkbox() ?>
 </div>
 <div class="col-md-4 col-sm-6 col-xs-12">
     <?= $search->field('hide_prj')->checkbox() ?>
 </div>
+

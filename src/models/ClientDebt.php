@@ -14,6 +14,7 @@ namespace hipanel\client\debt\models;
 use hipanel\helpers\ArrayHelper;
 use hipanel\modules\client\models\Client;
 use hipanel\modules\ticket\models\Thread;
+use hipanel\models\Ref;
 use Yii;
 
 /**
@@ -21,6 +22,12 @@ use Yii;
  */
 class ClientDebt extends Client
 {
+    const TARIFF_NOT_SERVICE = [
+        'client',
+        'template',
+        'referral',
+        'calculator'
+    ];
     const SOLD_DEDICATED = 'dedicated';
     const SOLD_CDN = 'cdn';
     const SOLD_VIRTUAL = 'virtual';
@@ -55,10 +62,11 @@ class ClientDebt extends Client
     public function rules()
     {
         return ArrayHelper::merge(Client::rules(), [
-            [['full_balance', 'debt_gt', 'debt_lt', 'debt_depth_gt', 'debt_depth_lt', 'debt', 'payment_ticket_id', 'template_id'], 'number'],
+            [['total_balance', 'debt_gt', 'debt_lt', 'debt_depth_gt', 'debt_depth_lt', 'debt', 'payment_ticket_id', 'template_id', 'balance'], 'number'],
+            [['inactive_period'], 'integer'],
             [['financial_month', 'debt_depth', 'sold_services'], 'safe'],
             [['last_deposit_time'], 'date'],
-            [['hide_vip', 'hide_prj'], 'boolean'],
+            [['hide_vip', 'hide_prj', 'hide_internal'], 'boolean'],
             [['positive_balance', 'negative_balance'], 'number'],
         ]);
     }
@@ -67,31 +75,21 @@ class ClientDebt extends Client
     {
         return array_merge(parent::attributeLabels(), [
             'debt_depth'        => Yii::t('hipanel.debt', 'Debt depth'),
-            'debt_lt'           => Yii::t('hipanel.debt', 'Debt to'),
-            'debt_gt'           => Yii::t('hipanel.debt', 'Debt from'),
-            'debt_depth_lt'     => Yii::t('hipanel.debt', 'Debt depth to'),
-            'debt_depth_gt'     => Yii::t('hipanel.debt', 'Debt depth from'),
-            'sold_services'     => Yii::t('hipanel.debt', 'Sold services'),
-            'hide_vip'          => Yii::t('hipanel.debt', 'Hide VIP'),
-            'hide_prj'          => Yii::t('hipanel.debt', 'Hide PRJ'),
-            'template_id'       => Yii::t('hipanel.debt', 'Template'),
         ]);
     }
 
     public static function getSoldServices()
     {
-        $sold_services = [
-            self::SOLD_DEDICATED => Yii::t('hipanel.debt', 'Dedicated'),
-            self::SOLD_CDN => Yii::t('hipanel.debt', 'CDN'),
-            self::SOLD_VIRTUAL => Yii::t('hipanel.debt', 'Virtual'),
-            self::SOLD_DEDICATED_CDN => Yii::t('hipanel.debt', 'Dedicated') . "+" . Yii::t('hipanel.debt', 'CDN'),
-            self::SOLD_DEDICATED_VIRTUAL => Yii::t('hipanel.debt', 'Dedicated') . "+" . Yii::t('hipanel.debt', 'Virtual'),
-            self::SOLD_CDN_VIRTUAL => Yii::t('hipanel.debt', 'CDN') . "+" . Yii::t('hipanel.debt', 'Virtual'),
-            self::SOLD_ALL => Yii::t('hipanel.debt', 'Dedicated') . "+" . Yii::t('hipanel.debt', 'CDN') . "+" . Yii::t('hipanel.debt', 'Virtual'),
-            self::SOLD_NOTHING => Yii::t('hipanel.debt', 'Nothing'),
-        ];
+        $services = Ref::getList('type,tariff');
+        foreach (self::TARIFF_NOT_SERVICE as $type) {
+            unset($services[$type]);
+        }
 
-        return $sold_services;
+        return array_merge([
+            'all' => Yii::t('hipanel.debt', 'All'),
+        ], $services, [
+            'nothing' => Yii::t('hipanel.debt', 'Nothing'),
+        ]);
     }
 
     public function getPayment_ticket()
