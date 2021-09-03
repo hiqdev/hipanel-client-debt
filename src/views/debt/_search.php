@@ -3,7 +3,6 @@
 use hipanel\modules\finance\helpers\CurrencyFilter;
 use hipanel\widgets\DateTimePicker;
 use hiqdev\combo\StaticCombo;
-use hipanel\models\Ref;
 use yii\helpers\Html;
 
 /**
@@ -40,11 +39,11 @@ use yii\helpers\Html;
     ]) ?>
 </div>
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('debt_depth_gt')->input('number') ?>
+    <?= $search->field('debt_depth_gt')->input('number', ['placeholder' => $search->model->getAttributeLabel('debt_gt')]) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('debt_depth_lt')->input('number') ?>
+    <?= $search->field('debt_depth_lt')->input('number', ['placeholder' => $search->model->getAttributeLabel('debt_gt')]) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
@@ -55,11 +54,11 @@ use yii\helpers\Html;
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('debt_gt')->input('number', ['step' => 0.01]) ?>
+    <?= $search->field('debt_gt')->input('number', ['step' => 0.01, 'placeholder' => $search->model->getAttributeLabel('debt_gt')]) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('debt_lt')->input('number', ['step' => 0.01]) ?>
+    <?= $search->field('debt_lt')->input('number', ['step' => 0.01, 'placeholder' => $search->model->getAttributeLabel('debt_lt')]) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
@@ -69,11 +68,11 @@ use yii\helpers\Html;
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('total_balance_gt')->input('number', ['step' => 0.01]) ?>
+    <?= $search->field('total_balance_gt')->input('number', ['step' => 0.01, 'placeholder' => $search->model->getAttributeLabel('total_balance_gt')]) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('total_balance_lt')->input('number', ['step' => 0.01]) ?>
+    <?= $search->field('total_balance_lt')->input('number', ['step' => 0.01, 'placeholder' => $search->model->getAttributeLabel('total_balance_lt')]) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
@@ -83,21 +82,21 @@ use yii\helpers\Html;
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('balance_gt')->input('number', ['step' => 0.01]) ?>
+    <?= $search->field('balance_gt')->input('number', ['step' => 0.01, 'placeholder' => $search->model->getAttributeLabel('balance_gt')]) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('balance_lt')->input('number', ['step' => 0.01]) ?>
+    <?= $search->field('balance_lt')->input('number', ['step' => 0.01, 'placeholder' => $search->model->getAttributeLabel('balance_lt')]) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('inactive_period_gt')->input('number') ?>
+    <?= $search->field('inactive_period_gt')->input('number', ['placeholder' => $search->model->getAttributeLabel('inactive_period_gt')]) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('hide_vip')->checkbox() ?>
+    <?= $search->field('hide_vip')->checkbox(['placeholder' => $search->model->getAttributeLabel('hide_vip')]) ?>
 </div>
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('hide_prj')->checkbox() ?>
+    <?= $search->field('hide_prj')->checkbox(['placeholder' => $search->model->getAttributeLabel('hide_prj')]) ?>
 </div>
 
