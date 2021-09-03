@@ -163,7 +163,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php endif ?>
     <?php $page->endContent() ?>
 
-    <?php var_dump($representationCollection->getByName($uiModel->representation)) ?>
     <?php $page->beginContent('table') ?>
         <?php $page->beginBulkForm() ?>
             <?= DebtGridView::widget([
