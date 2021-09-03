@@ -108,16 +108,20 @@ class DebtGridView extends ClientGridView
                 'filter' => false,
                 'label' => Yii::t('hipanel.debt', 'Sold services'),
                 'value' => function ($model) {
-                    foreach (json_decode($model->sold_services, true) as $sold_service => $value) {
-                        $sold_services[] = Html::tag('span', strtoupper(substr($sold_service, 0, 1)), ['class' => $value ? 'text-green text-bold' : 'text-red']);
+                    if (empty($model->sold_services)) {
+                        return '';
                     }
 
-                    return implode(' / ', $sold_services);
+                    foreach (explode(',', $model->sold_services) as $service) {
+                        $services[] = Html::tag('span', ucfirst(trim($service)));
+                    }
+                    return implode(' / ', $services);
                 },
             ],
-            'balance' => [
+            'total_balance' => [
+                'attribute' => 'total_balance',
                 'class' => BalanceColumn::class,
-                'valueFormatter' => fn($model, $value) => sprintf("%s %s", $model->currency, $value),
+                // 'valueFormatter' => fn($model, $value) => sprintf("%s %s", $model->currency, $value),
             ],
         ]);
     }

@@ -14,6 +14,7 @@ use hipanel\actions\IndexAction;
 use hipanel\actions\RenderAction;
 use hipanel\filters\EasyAccessControl;
 use hipanel\client\debt\models\ClientDebt;
+use hipanel\modules\client\models\ClientSearch;
 use hipanel\actions\SmartPerformAction;
 use hipanel\actions\PrepareBulkAction;
 use hipanel\modules\ticket\models\Template;
@@ -86,6 +87,7 @@ class DebtController extends \hipanel\base\CrudController
                         'types' => $this->getRefs('type,client', 'hipanel:client'),
                         'states' => $this->getRefs('state,client', 'hipanel:client'),
                         'sold_services' => ClientDebt::getSoldServices(),
+                        'debt_label' => ClientSearch::getDebtLabels(),
                     ];
                 },
                 'filterStorageMap' => [
