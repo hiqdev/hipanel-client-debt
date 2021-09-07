@@ -1,6 +1,7 @@
 <?php
 
 use hipanel\modules\finance\helpers\CurrencyFilter;
+use hipanel\client\debt\models\ClientDebt;
 use hipanel\widgets\DateTimePicker;
 use hiqdev\combo\StaticCombo;
 use yii\helpers\Html;
@@ -39,11 +40,11 @@ use yii\helpers\Html;
     ]) ?>
 </div>
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('debt_depth_gt')->input('number', ['placeholder' => $search->model->getAttributeLabel('debt_gt')]) ?>
+    <?= $search->field('debt_depth_gt')->input('number', ['placeholder' => $search->model->getAttributeLabel('debt_depth_gt')]) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('debt_depth_lt')->input('number', ['placeholder' => $search->model->getAttributeLabel('debt_gt')]) ?>
+    <?= $search->field('debt_depth_lt')->input('number', ['placeholder' => $search->model->getAttributeLabel('debt_depth_lt')]) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
@@ -76,8 +77,9 @@ use yii\helpers\Html;
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('debt_label')->widget(StaticCombo::class, [
-        'data' => $debt_label,
+    <?= $search->field('legal_type')->widget(StaticCombo::class, [
+        'data' => ClientDebt::getLegalTypeLabels(),
+        'hasId' => true,
     ]) ?>
 </div>
 
@@ -94,9 +96,17 @@ use yii\helpers\Html;
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
+    <?= $search->field('inactive_period_lt')->input('number', ['placeholder' => $search->model->getAttributeLabel('inactive_period_lt')]) ?>
+</div>
+
+<div class="col-md-4 col-sm-6 col-xs-12">
     <?= $search->field('hide_vip')->checkbox(['placeholder' => $search->model->getAttributeLabel('hide_vip')]) ?>
 </div>
 <div class="col-md-4 col-sm-6 col-xs-12">
     <?= $search->field('hide_prj')->checkbox(['placeholder' => $search->model->getAttributeLabel('hide_prj')]) ?>
 </div>
+<div class="col-md-4 col-sm-6 col-xs-12">
+    <?= $search->field('email_verified')->checkbox(['placeholder' => $search->model->getAttributeLabel('email_verified')]) ?>
+</div>
+
 

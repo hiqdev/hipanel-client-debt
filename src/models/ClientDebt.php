@@ -37,6 +37,9 @@ class ClientDebt extends Client
     const SOLD_ALL = 'all';
     const SOLD_NOTHING = 'nothing';
 
+    const LEGAL_TYPE_COMPANY = 'company';
+    const LEGAL_TYPE_PERSONAL = 'personal';
+
     public static function tableName()
     {
         return 'clientdebt';
@@ -90,6 +93,14 @@ class ClientDebt extends Client
         ], $services, [
             'nothing' => Yii::t('hipanel.debt', 'Nothing'),
         ]);
+    }
+
+    public static function getLegalTypeLabels(): array
+    {
+        return [
+            self::LEGAL_TYPE_COMPANY => Yii::t('hipanel.debt', 'Company'),
+            self::LEGAL_TYPE_PERSONAL => Yii::t('hipanel.debt', 'Personal'),
+        ];
     }
 
     public function getPayment_ticket()
