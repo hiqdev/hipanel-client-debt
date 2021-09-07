@@ -55,6 +55,7 @@ class ClientDebtSearch extends ClientDebt
             'inactive_period_lt'=> Yii::t('hipanel.debt', 'Inactive period up to'),
             'legal_type'        => Yii::t('hipanel.debt', 'Legal type'),
             'email_verified'    => Yii::t('hipanel.debt', 'Is email verified'),
+            'sold_services_in'  => Yii::t('hipanel.debt', 'Sold services'),
         ]);
     }
 

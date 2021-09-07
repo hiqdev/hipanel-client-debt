@@ -90,6 +90,7 @@ class ClientDebt extends Client
 
         return array_merge([
             'all' => Yii::t('hipanel.debt', 'All'),
+            'any' => Yii::t('hipanel.debt', 'Any'),
         ], $services, [
             'nothing' => Yii::t('hipanel.debt', 'Nothing'),
         ]);
