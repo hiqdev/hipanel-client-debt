@@ -37,7 +37,7 @@ class ClientDebtSearch extends ClientDebt
     {
         return array_merge(parent::attributeLabels(), [
             'debt_label'        => Yii::t('hipanel.debt', 'Debt type'),
-            'total_debt_label'  => Yii::t('hipanel.debt', 'Debt type'),
+            'total_debt_label'  => Yii::t('hipanel.debt', 'Total debt type'),
             'debt_lt'           => Yii::t('hipanel.debt', 'Debt up to'),
             'debt_gt'           => Yii::t('hipanel.debt', 'Debt from'),
             'debt_depth_lt'     => Yii::t('hipanel.debt', 'Debt depth up to'),
