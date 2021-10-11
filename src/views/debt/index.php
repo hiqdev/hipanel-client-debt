@@ -46,7 +46,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<?php Pjax::begin(array_merge(Yii::$app->params['pjax'], ['enablePushState' => true])) ?>
 <?php $page = IndexPage::begin(compact('model', 'dataProvider')) ?>
 
     <?= $page->setSearchFormData(compact(['types', 'states', 'uiModel', 'sold_services', 'debt_label'])) ?>
@@ -184,4 +183,3 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php $page->endContent() ?>
 
 <?php $page->end() ?>
-<?php Pjax::end() ?>

@@ -40,11 +40,11 @@ use yii\helpers\Html;
     ]) ?>
 </div>
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('debt_depth_gt')->input('number', ['placeholder' => $search->model->getAttributeLabel('debt_depth_gt')]) ?>
+    <?= $search->field('debt_depth_gt')->input('number', ['step' => 0.01, 'placeholder' => $search->model->getAttributeLabel('debt_depth_gt')]) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('debt_depth_lt')->input('number', ['placeholder' => $search->model->getAttributeLabel('debt_depth_lt')]) ?>
+    <?= $search->field('debt_depth_lt')->input('number', ['step' => 0.01, 'placeholder' => $search->model->getAttributeLabel('debt_depth_lt')]) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
