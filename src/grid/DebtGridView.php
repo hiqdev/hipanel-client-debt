@@ -123,6 +123,14 @@ class DebtGridView extends ClientGridView
                 'class' => BalanceColumn::class,
                 // 'valueFormatter' => fn($model, $value) => sprintf("%s %s", $model->currency, $value),
             ],
+            'balance_usd' => [
+                'class' => BalanceColumn::class,
+                'valueFormatter' => fn($model, $value) => sprintf("%s %s", 'usd', $value),
+            ],
+            'balance_eur' => [
+                'class' => BalanceColumn::class,
+                'valueFormatter' => fn($model, $value) => sprintf("%s %s", 'eur', $value),
+            ],
         ]);
     }
 }
