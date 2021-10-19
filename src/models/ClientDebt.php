@@ -71,6 +71,7 @@ class ClientDebt extends Client
             [['last_deposit_time'], 'date'],
             [['hide_vip', 'hide_prj', 'hide_internal'], 'boolean'],
             [['positive_balance', 'negative_balance'], 'number'],
+            [['balance_eur', 'balance_usd'], 'number'],
         ]);
     }
 
@@ -78,6 +79,8 @@ class ClientDebt extends Client
     {
         return array_merge(parent::attributeLabels(), [
             'debt_depth'        => Yii::t('hipanel.debt', 'Debt depth'),
+            'balance_usd'       => Yii::t('hipanel.debt', 'USD'),
+            'balance_eur'       => Yii::t('hipanel.debt', 'EUR'),
         ]);
     }
 
