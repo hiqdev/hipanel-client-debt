@@ -4,6 +4,8 @@ use hipanel\modules\finance\helpers\CurrencyFilter;
 use hipanel\client\debt\models\ClientDebt;
 use hipanel\widgets\DateTimePicker;
 use hiqdev\combo\StaticCombo;
+use hipanel\modules\finance\widgets\combo\PlanCombo;
+use hipanel\modules\finance\models\Plan;
 use yii\helpers\Html;
 
 /**
@@ -30,6 +32,32 @@ use yii\helpers\Html;
             ],
         ]) ?>
     </div>
+</div>
+
+<div class="col-md-4 col-sm-6 col-xs-12">
+    <?= $search->field('plan_id')->widget(PlanCombo::class, [
+        'hasId' => true,
+        'multiple' => false,
+        'tariffType' => [
+            Plan::TYPE_SERVER,
+            Plan::TYPE_PCDN,
+            Plan::TYPE_VCDN,
+            Plan::TYPE_CERTIFICATE,
+            Plan::TYPE_DOMAIN,
+            Plan::TYPE_SWITCH,
+            Plan::TYPE_AVDS,
+            Plan::TYPE_OVDS,
+            Plan::TYPE_SVDS,
+            Plan::TYPE_HARDWARE,
+            Plan::TYPE_ANYCASTCDN,
+            Plan::TYPE_VPS,
+            Plan::TYPE_SNAPSHOT,
+            Plan::TYPE_VOLUME,
+            Plan::TYPE_STORAGE,
+            Plan::TYPE_PRIVATE_CLOUD_BACKUP,
+            Plan::TYPE_PRIVATE_CLOUD,
+        ],
+    ]) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">

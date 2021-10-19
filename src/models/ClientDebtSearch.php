@@ -30,6 +30,7 @@ class ClientDebtSearch extends ClientDebt
             'inactive_period_gt',
             'legal_type',
             'email_verified',
+            'plan_id',
         ]);
     }
 
@@ -56,6 +57,7 @@ class ClientDebtSearch extends ClientDebt
             'legal_type'        => Yii::t('hipanel.debt', 'Legal type'),
             'email_verified'    => Yii::t('hipanel.debt', 'Is email verified'),
             'sold_services_in'  => Yii::t('hipanel.debt', 'Sold services'),
+            'plan_id'           => Yii::t('hipanel:finance', 'Tariff'),
         ]);
     }
 
