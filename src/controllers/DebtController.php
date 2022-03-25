@@ -68,6 +68,9 @@ class DebtController extends \hipanel\base\CrudController
                     $local_sums = [];
                     foreach ($data['dataProvider']->getModels() as $model) {
                         $balance = (float)$model->balance;
+                        $local_sums[$model->currency]['total'] = 0;
+                        $local_sums[$model->currency]['negative'] = 0;
+                        $local_sums[$model->currency]['positive'] = 0;
                         $local_sums[$model->currency]['total'] += $model->balance;
                         if ($balance < 0) {
                             $local_sums[$model->currency]['negative'] -= $model->balance;
