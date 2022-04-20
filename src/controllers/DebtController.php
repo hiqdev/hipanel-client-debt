@@ -10,8 +10,10 @@
 
 namespace hipanel\client\debt\controllers;
 
+use hipanel\actions\Action;
 use hipanel\actions\IndexAction;
 use hipanel\actions\RenderAction;
+use hipanel\base\CrudController;
 use hipanel\filters\EasyAccessControl;
 use hipanel\client\debt\models\ClientDebt;
 use hipanel\modules\client\models\ClientSearch;
@@ -22,7 +24,7 @@ use yii\base\Event;
 use yii\helpers\ArrayHelper;
 use Yii;
 
-class DebtController extends \hipanel\base\CrudController
+class DebtController extends CrudController
 {
     protected $_myViewPath;
 
@@ -103,7 +105,7 @@ class DebtController extends \hipanel\base\CrudController
                 'class' => SmartPerformAction::class,
                 'success' => Yii::t('hipanel:client', 'Notification was created'),
                 'on beforeSave' => function(Event $event) {
-                    /** @var \hipanel\actions\Action $action */
+                    /** @var Action $action */
                     $action = $event->sender;
                     $template_id = Yii::$app->request->post('template_id');
                     if (!empty($template_id)) {
@@ -118,6 +120,11 @@ class DebtController extends \hipanel\base\CrudController
             'bulk-create-ticket-notification-modal' => [
                 'class' => PrepareBulkAction::class,
                 'view' => '_bulkNotificationTickets',
+                'on beforePerform' => static function (Event $event) {
+                    /** @var Action $action */
+                    $action = $event->sender;
+                    $action->getDataProvider()->query->addSelect(['simple-list']);
+                },
                 'data' => function($action, $data) {
                     $templates = ArrayHelper::map(Template::find()->all(), 'id', 'name');
                     return array_merge($data, [
