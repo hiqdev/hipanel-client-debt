@@ -40,7 +40,7 @@ use yii\web\View;
 
 FlagIconCssAsset::register($this);
 
-$this->title = Yii::t('hipanel.debt', 'Debtors');
+$this->title = Yii::t('hipanel.debt', 'Accounts Monitoring');
 $this->params['subtitle'] = array_filter(Yii::$app->request->get($model->formName(), [])) ? Yii::t('hipanel', 'filtered list') : Yii::t('hipanel', 'full list');
 $this->params['breadcrumbs'][] = $this->title;
 

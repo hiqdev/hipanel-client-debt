@@ -121,6 +121,7 @@ class DebtGridView extends ClientGridView
             'total_balance' => [
                 'attribute' => 'total_balance',
                 'class' => BalanceColumn::class,
+                'label' => Yii::t('hipanel.debt', 'Total balance'),
                 // 'valueFormatter' => fn($model, $value) => sprintf("%s %s", $model->currency, $value),
             ],
             'balance_usd' => [

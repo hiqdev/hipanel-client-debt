@@ -17,6 +17,18 @@ use yii\helpers\Html;
 
 <?php include Yii::getAlias('@hipanel/modules/client/views/client/_search.php') ?>
 
+<div class="col-md-4 col-sm-6 col-xs-12 checkbox">
+    <?= $search->field('hide_vip')->checkbox(['placeholder' => $search->model->getAttributeLabel('hide_vip')]) ?>
+</div>
+
+<div class="col-md-4 col-sm-6 col-xs-12 checkbox">
+    <?= $search->field('hide_prj')->checkbox(['placeholder' => $search->model->getAttributeLabel('hide_prj')]) ?>
+</div>
+
+<div class="col-md-4 col-sm-6 col-xs-12 checkbox">
+    <?= $search->field('email_verified')->checkbox(['placeholder' => $search->model->getAttributeLabel('email_verified')]) ?>
+</div>
+
 <div class="col-md-4 col-sm-6 col-xs-12">
     <div class="form-group">
         <?= Html::tag('label', Yii::t('hipanel:client', 'Financial month'), ['class' => 'control-label']); ?>
@@ -127,14 +139,5 @@ use yii\helpers\Html;
     <?= $search->field('inactive_period_lt')->input('number', ['placeholder' => $search->model->getAttributeLabel('inactive_period_lt')]) ?>
 </div>
 
-<div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('hide_vip')->checkbox(['placeholder' => $search->model->getAttributeLabel('hide_vip')]) ?>
-</div>
-<div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('hide_prj')->checkbox(['placeholder' => $search->model->getAttributeLabel('hide_prj')]) ?>
-</div>
-<div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('email_verified')->checkbox(['placeholder' => $search->model->getAttributeLabel('email_verified')]) ?>
-</div>
 
 
