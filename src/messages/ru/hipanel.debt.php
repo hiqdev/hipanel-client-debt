@@ -44,4 +44,6 @@ return [
     'Inactive period from' => 'Период неактивности от',
     'Inactive period up to' => 'Период неактивности до',
     'Debt depth up to' => 'Глубина долга до',
+    'Any balance from' => 'Баланс в любой валюте от',
+    'Any balance up to' => 'Баланс в любой валюте до',
 ];

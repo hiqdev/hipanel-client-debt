@@ -132,6 +132,38 @@ class DebtGridView extends ClientGridView
                 'class' => BalanceColumn::class,
                 'valueFormatter' => fn($model, $value) => sprintf("%s %s", 'eur', $value),
             ],
+            'balance_uah' => [
+                'class' => BalanceColumn::class,
+                'valueFormatter' => fn($model, $value) => sprintf("%s %s", 'uah', $value),
+            ],
+            'balance_rub' => [
+                'class' => BalanceColumn::class,
+                'valueFormatter' => fn($model, $value) => sprintf("%s %s", 'rub', $value),
+            ],
+            'balance_pln' => [
+                'class' => BalanceColumn::class,
+                'valueFormatter' => fn($model, $value) => sprintf("%s %s", 'pln', $value),
+            ],
+            'balance_btc' => [
+                'class' => BalanceColumn::class,
+                'valueFormatter' => fn($model, $value) => sprintf("%s %s", 'btc', $value),
+            ],
+            'balance_sgd' => [
+                'class' => BalanceColumn::class,
+                'valueFormatter' => fn($model, $value) => sprintf("%s %s", 'sgd', $value),
+            ],
+            'balance_gbp' => [
+                'class' => BalanceColumn::class,
+                'valueFormatter' => fn($model, $value) => sprintf("%s %s", 'gpb', $value),
+            ],
+            'balance_jpy' => [
+                'class' => BalanceColumn::class,
+                'valueFormatter' => fn($model, $value) => sprintf("%s %s", 'jpy', $value),
+            ],
+            'balance_hkd' => [
+                'class' => BalanceColumn::class,
+                'valueFormatter' => fn($model, $value) => sprintf("%s %s", 'hkd', $value),
+            ],
         ]);
     }
 }
