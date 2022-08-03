@@ -80,11 +80,11 @@ use yii\helpers\Html;
     ]) ?>
 </div>
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('debt_depth_gt')->input('number', ['step' => 0.01, 'placeholder' => $search->model->getAttributeLabel('debt_depth_gt')]) ?>
+    <?= $search->field('debt_depth_ge')->input('number', ['step' => 0.01, 'placeholder' => $search->model->getAttributeLabel('debt_depth_ge')]) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('debt_depth_lt')->input('number', ['step' => 0.01, 'placeholder' => $search->model->getAttributeLabel('debt_depth_lt')]) ?>
+    <?= $search->field('debt_depth_le')->input('number', ['step' => 0.01, 'placeholder' => $search->model->getAttributeLabel('debt_depth_le')]) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
@@ -95,11 +95,11 @@ use yii\helpers\Html;
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('debt_gt')->input('number', ['step' => 0.01, 'placeholder' => $search->model->getAttributeLabel('debt_gt')]) ?>
+    <?= $search->field('debt_ge')->input('number', ['step' => 0.01, 'placeholder' => $search->model->getAttributeLabel('debt_ge')]) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('debt_lt')->input('number', ['step' => 0.01, 'placeholder' => $search->model->getAttributeLabel('debt_lt')]) ?>
+    <?= $search->field('debt_le')->input('number', ['step' => 0.01, 'placeholder' => $search->model->getAttributeLabel('debt_le')]) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
@@ -109,11 +109,19 @@ use yii\helpers\Html;
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('total_balance_gt')->input('number', ['step' => 0.01, 'placeholder' => $search->model->getAttributeLabel('total_balance_gt')]) ?>
+    <?= $search->field('any_balance_ge')->input('number', ['step' => 0.01, 'placeholder' => $search->model->getAttributeLabel('any_balance_ge')]) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('total_balance_lt')->input('number', ['step' => 0.01, 'placeholder' => $search->model->getAttributeLabel('total_balance_lt')]) ?>
+    <?= $search->field('any_balance_le')->input('number', ['step' => 0.01, 'placeholder' => $search->model->getAttributeLabel('any_balance_le')]) ?>
+</div>
+
+<div class="col-md-4 col-sm-6 col-xs-12">
+    <?= $search->field('total_balance_ge')->input('number', ['step' => 0.01, 'placeholder' => $search->model->getAttributeLabel('total_balance_ge')]) ?>
+</div>
+
+<div class="col-md-4 col-sm-6 col-xs-12">
+    <?= $search->field('total_balance_le')->input('number', ['step' => 0.01, 'placeholder' => $search->model->getAttributeLabel('total_balance_le')]) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
@@ -124,19 +132,19 @@ use yii\helpers\Html;
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('balance_gt')->input('number', ['step' => 0.01, 'placeholder' => $search->model->getAttributeLabel('balance_gt')]) ?>
+    <?= $search->field('balance_ge')->input('number', ['step' => 0.01, 'placeholder' => $search->model->getAttributeLabel('balance_ge')]) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('balance_lt')->input('number', ['step' => 0.01, 'placeholder' => $search->model->getAttributeLabel('balance_lt')]) ?>
+    <?= $search->field('balance_le')->input('number', ['step' => 0.01, 'placeholder' => $search->model->getAttributeLabel('balance_le')]) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('inactive_period_gt')->input('number', ['placeholder' => $search->model->getAttributeLabel('inactive_period_gt')]) ?>
+    <?= $search->field('inactive_period_ge')->input('number', ['placeholder' => $search->model->getAttributeLabel('inactive_period_ge')]) ?>
 </div>
 
 <div class="col-md-4 col-sm-6 col-xs-12">
-    <?= $search->field('inactive_period_lt')->input('number', ['placeholder' => $search->model->getAttributeLabel('inactive_period_lt')]) ?>
+    <?= $search->field('inactive_period_le')->input('number', ['placeholder' => $search->model->getAttributeLabel('inactive_period_le')]) ?>
 </div>
 
 

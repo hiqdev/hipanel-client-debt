@@ -65,13 +65,13 @@ class ClientDebt extends Client
     public function rules()
     {
         return ArrayHelper::merge(Client::rules(), [
-            [['total_balance', 'debt_gt', 'debt_lt', 'debt_depth_gt', 'debt_depth_lt', 'debt', 'payment_ticket_id', 'template_id', 'balance'], 'number'],
+            [['total_balance', 'debt_ge', 'debt_le', 'debt_depth_ge', 'debt_depth_le', 'debt', 'payment_ticket_id', 'template_id', 'balance'], 'number'],
             [['inactive_period'], 'integer'],
             [['financial_month', 'debt_depth', 'sold_services'], 'safe'],
             [['last_deposit_time'], 'date'],
             [['hide_vip', 'hide_prj', 'hide_internal'], 'boolean'],
             [['positive_balance', 'negative_balance'], 'number'],
-            [['balance_eur', 'balance_usd'], 'number'],
+            [['balance_eur', 'balance_usd', 'balance_uah','balance_rub','balance_pln','balance_btc','balance_sgd','balance_gbp','balance_jpy','balance_hkd'], 'number'],
         ]);
     }
 
@@ -81,6 +81,14 @@ class ClientDebt extends Client
             'debt_depth'        => Yii::t('hipanel.debt', 'Debt depth'),
             'balance_usd'       => Yii::t('hipanel.debt', 'USD'),
             'balance_eur'       => Yii::t('hipanel.debt', 'EUR'),
+            'balance_uah'       => Yii::t('hipanel.debt', 'UAH'),
+            'balance_rub'       => Yii::t('hipanel.debt', 'RUB'),
+            'balance_pln'       => Yii::t('hipanel.debt', 'PLN'),
+            'balance_btc'       => Yii::t('hipanel.debt', 'BTC'),
+            'balance_sgd'       => Yii::t('hipanel.debt', 'SGD'),
+            'balance_gbp'       => Yii::t('hipanel.debt', 'GBP'),
+            'balance_jpy'       => Yii::t('hipanel.debt', 'JPY'),
+            'balance_hkd'       => Yii::t('hipanel.debt', 'HKD'),
         ]);
     }
 
