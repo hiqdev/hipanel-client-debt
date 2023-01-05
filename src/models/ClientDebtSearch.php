@@ -12,17 +12,26 @@ namespace hipanel\client\debt\models;
 
 use hipanel\base\SearchModelTrait;
 use hipanel\helpers\ArrayHelper;
+use hipanel\modules\client\models\ClientSearch;
 use Yii;
 
 class ClientDebtSearch extends ClientDebt
 {
+    private readonly ClientSearch $clientSearch;
+
+    public function init()
+    {
+        parent::init();
+        $this->clientSearch = new ClientSearch();
+    }
+
     use SearchModelTrait {
         searchAttributes as defaultSearchAttributes;
     }
 
     public function searchAttributes()
     {
-        return ArrayHelper::merge($this->defaultSearchAttributes(), [
+        return ArrayHelper::merge($this->defaultSearchAttributes(), $this->clientSearch->searchAttributes(), [
             'created_from', 'created_till',
             'types', 'states', 'debt_ge', 'debt_le', 'debt_depth_ge', 'debt_depth_le', 'debt', 'login_email_like',
             'hide_internal', 'hide_vip','hide_prj',
@@ -37,7 +46,7 @@ class ClientDebtSearch extends ClientDebt
 
     public function attributeLabels()
     {
-        return array_merge(parent::attributeLabels(), [
+        return array_merge(parent::attributeLabels(), $this->clientSearch->attributeLabels(), [
             'debt_label'        => Yii::t('hipanel.debt', 'Debt type'),
             'total_debt_label'  => Yii::t('hipanel.debt', 'Total debt type'),
             'debt_le'           => Yii::t('hipanel.debt', 'Debt up to'),
